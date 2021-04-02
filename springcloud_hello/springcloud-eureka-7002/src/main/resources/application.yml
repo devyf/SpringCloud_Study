@@ -1,0 +1,18 @@
+server:
+  port: 7002
+
+#1.注意要首先修改hosts文件中映射配置；
+#  127.0.0.1 eureka7001.com
+#  127.0.0.1 eureka7002.com
+#  127.0.0.1 eureka7003.com
+
+#Eureka主从复制--集群配置
+eureka:
+  instance:
+    hostname: eureka7002.com  #Eureka服务端的实例名称
+  client:
+    register-with-eureka: false  #表示是否向Eureka注册中心注册自己，false表示不注册自己
+    fetch-registry: false  #如果为false，则表示自己为注册中心
+    service-url:  #监控页面地址
+      #单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7003.com:7003/eureka/
