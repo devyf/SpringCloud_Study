@@ -27,9 +27,6 @@ public class DeptConsumerController {
     //负载均衡后通过服务名来获取
     private static final String REST_URL_PREFIX = "http://SPRINGCLOUD-PROVIDER-DEPT";
 
-
-
-
     @RequestMapping("/consumer/dept/add")
     public boolean add(Dept dept){
         return restTemplate.postForObject(REST_URL_PREFIX + "/dept/add", dept, Boolean.class);
