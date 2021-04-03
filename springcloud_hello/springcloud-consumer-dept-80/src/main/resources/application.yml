@@ -1,5 +1,5 @@
 server:
-  port: 81
+  port: 81  #本应该是80端口，电脑system占用，改成81端口
 
 #spring的配置
 spring:
