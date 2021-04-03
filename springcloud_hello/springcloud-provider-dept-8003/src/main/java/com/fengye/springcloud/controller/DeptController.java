@@ -20,7 +20,6 @@ public class DeptController {
     @Autowired  //对外暴露一个服务发现的接口
     private DiscoveryClient client;
 
-    //集群情况下，用于订单服务查看到底调用的是哪个商品微服务节点
     @Value("${server.port}")
     private String port;
 

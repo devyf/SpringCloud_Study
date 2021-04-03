@@ -1,7 +1,10 @@
 package com.fengye.springcloud.controller;
 
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.fengye.springcloud.pojo.Dept;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +23,12 @@ public class DeptConsumerController {
     private RestTemplate restTemplate;
 
     //服务端的请求地址，这里是本机localhost，也可以是其他任意的服务机ip地址
-    private static final String REST_URL_PREFIX = "http://localhost:8001";
+    //private static final String REST_URL_PREFIX = "http://localhost:8001";
+    //负载均衡后通过服务名来获取
+    private static final String REST_URL_PREFIX = "http://SPRINGCLOUD-PROVIDER-DEPT";
+
+
+
 
     @RequestMapping("/consumer/dept/add")
     public boolean add(Dept dept){
@@ -29,7 +37,9 @@ public class DeptConsumerController {
 
     @RequestMapping("/consumer/dept/get/{id}")
     public Dept get(@PathVariable("id") Long id){
-        return restTemplate.getForObject(REST_URL_PREFIX + "/dept/queryById/" + id, Dept.class);
+        Dept result = restTemplate.getForObject(REST_URL_PREFIX + "/dept/queryById/" + id, Dept.class);
+        System.out.println("客户端请求：data from port= " + result.getDname());
+        return  result;
     }
 
     @RequestMapping("/consumer/dept/list")
