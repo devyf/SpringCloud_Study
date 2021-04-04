@@ -1,0 +1,34 @@
+server:
+  port: 9527
+
+#spring的配置
+spring:
+  application:
+    name: springcloud-zuul-gateway  #默认注册进eureka中的实例名称（显示大写）
+
+
+#eureka的配置，确定客户端服务注册到eureka服务列表内
+eureka:
+  client:
+    service-url:
+      #集群配置
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: gateway-9527.com  #修改eureka上默认的服务描述信息
+    prefer-ip-address: true  #访问路径可以显示ip地址
+
+#避免真实服务名暴露，可以自定义修改，key-value形式，key：原真实服务名，value：自定义映射地址
+zuul:
+  prefix: /fengye  #统一路径名前缀
+  ingore-services: "*"  #原路径名无效，新路径有效，不让别人知道我的服务名，可以随便设置
+  routes:
+    mydept.serviceId: springcloud-provider-dept  #不暴露原来的服务名，将springcloud-provider-dept作为key替换
+    mydept.path: /mydept/**  #现在的服务路径修改为/mydept/**
+
+
+#info配置
+info:
+  app.name: fengye-springcloud
+  company.name: blog.fengye.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
