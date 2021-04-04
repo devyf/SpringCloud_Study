@@ -12,6 +12,11 @@ spring:
     username: root
     password: admin
 
+#开启降级feign.hystrix支持
+feign:
+  hystrix:
+    enabled: true
+
 #eureka的配置，确定客户端服务注册到eureka服务列表内
 eureka:
   client:

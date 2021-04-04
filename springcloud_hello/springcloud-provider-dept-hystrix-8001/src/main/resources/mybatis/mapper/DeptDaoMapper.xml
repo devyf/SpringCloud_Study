@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fengye.springcloud.dao.DeptDao">
+    <resultMap id="deptMap" type="dept">
+        <!-- property: 实体类属性名.
+             column: 库中表的列名
+            javaType: 数据类型.
+        -->
+        <id property="deptno" column="deptno" javaType="long"></id>
+        <result property="dname" column="dname"></result>
+        <result property="dbSource" column="db_source"></result>
+    </resultMap>
+
+    <insert id="addDept"  parameterType="dept">
+        insert into springcloud_db01.dept(dname, db_source)
+          VALUES
+        (#{dname}, DATABASE())
+    </insert>
+
+    <!--<select id="queryById" parameterType="long" resultType="dept">-->
+        <!--select deptno, dname, db_source as dbSource-->
+        <!--from springcloud_db01.dept where deptno = #{deptno}-->
+    <!--</select>-->
+    <select id="queryById" parameterType="long" resultType="dept">
+        select * from springcloud_db01.dept where deptno = #{deptno}
+    </select>
+
+    <select id="queryAll" resultType="dept">
+        select * from springcloud_db01.dept
+    </select>
+</mapper>

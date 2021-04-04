@@ -1,0 +1,43 @@
+server:
+  port: 8001
+#mybatis的配置
+mybatis:
+  #config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.fengye.springcloud.pojo
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+  #注意config-location: classpath:mybatis/mybatis-config.xml不能与
+  #驼峰一起使用
+  configuration:
+    map-underscore-to-camel-case: true
+
+#spring的配置
+spring:
+  application:
+    name: springcloud-provider-dept  #默认注册进eureka中的实例名称（显示大写）
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_db01?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: admin
+
+#eureka的配置，确定客户端服务注册到eureka服务列表内
+eureka:
+#  server:
+#    enable-self-preservation: false  #禁用自我保护机制，不推荐设置
+  client:
+    service-url:
+      #集群配置
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      #defaultZone: http://localhost:7001/eureka/
+  instance:
+    instance-id: springcloud-provider-dept-hystrix-8001  #修改eureka上默认的服务描述信息
+    prefer-ip-address: true  #访问路径可以显示ip地址
+
+
+#info配置
+info:
+  app.name: fengye-springcloud
+  company.name: blog.fengye.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
