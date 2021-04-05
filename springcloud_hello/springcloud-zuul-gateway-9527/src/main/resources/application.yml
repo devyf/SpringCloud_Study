@@ -20,7 +20,7 @@ eureka:
 #避免真实服务名暴露，可以自定义修改，key-value形式，key：原真实服务名，value：自定义映射地址
 zuul:
   prefix: /fengye  #统一路径名前缀
-  ingore-services: "*"  #原路径名无效，新路径有效，不让别人知道我的服务名，可以随便设置
+  ignored-services: springcloud-provider-dept  #原来的springcloud-provider-dept无效，使用新的；使用"*"表示多个微服务统一忽略原微服务名，使用现在给的value值
   routes:
     mydept.serviceId: springcloud-provider-dept  #不暴露原来的服务名，将springcloud-provider-dept作为key替换
     mydept.path: /mydept/**  #现在的服务路径修改为/mydept/**
