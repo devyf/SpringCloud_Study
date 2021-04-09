@@ -1,0 +1,10 @@
+server:
+  port: 81
+
+spring:
+  application:
+    name: springcloud-order-service
+  cloud:
+    #注册到zookeeper地址
+    zookeeper:
+      connect-string: 139.155.203.191:2181  #zookeeper远程服务器的IP加端口号
