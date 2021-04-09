@@ -20,6 +20,7 @@
       <module>springcloud-consumerzk-order80</module>
       <module>springcloud-providerconsul-payment8006</module>
       <module>springcloud-consumerconsul-order80</module>
+      <module>springcloud-consumer-feign-order80</module>
   </modules>
   <name>Maven</name>
   <!-- FIXME change it to the project's website -->
