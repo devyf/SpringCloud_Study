@@ -1,0 +1,17 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: springcloud-config-server
+  #连接远程仓库
+  cloud:
+    config:
+      server:
+        git:
+          #uri: git@github.com:devyf/springcloud-config.git  #GitHub上面的git仓库的名字
+          uri: https://github.com/devyf/springcloud-config.git  #https协议
+          force-pull: true
+          username: de***
+          password: *********
+      label: master  #资源在git库上的哪个分支去读
