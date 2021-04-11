@@ -1,0 +1,4 @@
+#spring的配置
+spring:
+  application:
+    name: springcloud-config-dept  #默认注册进eureka中的实例名称（显示大写）
