@@ -7,22 +7,22 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:devyf/springcloud-config.git  #github上面的git仓库名字
-          #搜索目录：到github仓库找一个叫springcloud-config的目录
+          uri: https://github.com/devyf/springcloud-config.git  #github上面的git仓库名字，使用https协议
+          force-pull: true
+          username: ****
+          password: ******
           search-paths:
-            - springcloud-config
+            - springcloud-config   #搜索目录：到github仓库找一个叫springcloud-config的目录
           #配置文件的读取规则
-          /{label}/{application}-{profile}.yml
-          /{application}-{profile}.yml
-          /{application}/{profile}[/{label}]
-
-      #读取分支
-      label: master
+          #/{label}/{application}-{profile}.yml
+          #/{application}-{profile}.yml
+          #/{application}/{profile}[/{label}]
+      label: master  #资源在git库上的哪个分支去读
 
 #服务注册到eureka地址
 eureka:
   client:
     service-url:
-      defaultzone: http://localhost:7001/eureka
+      defaultZone: http://localhost:7001/eureka
 
 
