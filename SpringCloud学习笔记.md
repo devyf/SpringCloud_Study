@@ -72,7 +72,7 @@
 
 
 
-## Eureka服务注册与发现
+## 3.Eureka服务注册与发现
 
 ![image-20210331233609040](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210331233609040.png)
 
@@ -86,11 +86,11 @@
 
 
 
-## Eureka的自我保护机制
+### 3.1.Eureka的自我保护机制
 
 ![image-20210401111859000](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210401111859000.png)
 
-## Eureka比Zookeeper好在哪里？
+### 3.2.Eureka比Zookeeper好在哪里？
 
 ![image-20210402182930644](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210402182930644.png)
 
@@ -98,19 +98,19 @@
 
 
 
-## Ribbon
+## 4.Ribbon
 
 ![image-20210401120229103](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210401120229103.png)
 
 
 
-## Feign负载均衡
+## 5.Feign负载均衡
 
 ![image-20210401132615808](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210401132615808.png)
 
 
 
-## Hystrix
+## 6.Hystrix
 
 https://github.com/Netflix/Hystrix/wiki
 
@@ -120,19 +120,19 @@ https://github.com/Netflix/Hystrix/wiki
 
 
 
-### 服务熔断
+### 6.1.服务熔断
 
 ![image-20210404134520636](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210404134520636.png)
 
 
 
-## Zuul路由网关
+## 7.Zuul路由网关
 
 ![image-20210404203324492](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210404203324492.png)
 
 
 
-## SpringCloud Config
+## 8.SpringCloud Config
 
 ![image-20210405144627887](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210405144627887.png)
 
@@ -143,6 +143,69 @@ https://github.com/Netflix/Hystrix/wiki
 ![image-20210405145208596](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210405145208596.png)
 
 ![image-20210405145238448](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210405145238448.png)
+
+能干嘛？
+
+- 集中管理配置文件
+
+- 不同环境不同配置，动态化的配置更新，分环境部署比如dev/test/prod/beat/release
+
+- 运行期间动态调整配置，不再需要在每个服务部署的机器上编写配置文件，服务会向配置中心统一拉取配置自己的信息
+
+- 当配置发生变动时，服务不需要重启即可感知到配置的变化并应用新的配置
+
+- 将配置信息以REST接口的形式暴露
+
+  
+
+
+
+### 8.1.服务端配置
+
+```java
+@SpringBootApplication
+@EnableConfigServer
+public class SpringCloudConfig_3344_StartApp {
+    public static void main(String[] args) {
+        SpringApplication.run(SpringCloudConfig_3344_StartApp.class, args);
+    }
+}
+```
+
+application.yml文件：
+
+```yaml
+server:
+  port: 3344
+
+spring:
+  application:
+    name: springcloud-config
+  cloud:
+    config:
+      server:
+        git:
+          #uri: git@github.com:devyf/springcloud-config.git  #GitHub上面的git仓库的名字
+          uri: https://github.com/devyf/springcloud-config.git
+          force-pull: true
+          username: ****
+          password: ****
+      label: master
+```
+
+
+
+### 8.2.客户端配置
+
+多个客户端通过config server都能读到config的配置。
+
+![image-20210411120021969](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20210411120021969.png)
+
+
+
+Caused by: org.eclipse.jgit.errors.TransportException: git@github.com:devyf/springcloud-config.git: Auth fail
+
+
 
 
 
