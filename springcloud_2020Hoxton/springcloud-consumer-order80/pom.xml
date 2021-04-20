@@ -12,6 +12,11 @@
     <artifactId>springcloud-consumer-order80</artifactId>
 
     <dependencies>
+        <!--包含sleuth+zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <!--Eureka Client客户端-->
         <!--新版的spring-cloud-starter-netflix-eureka-client自带负载均衡器
             查看源码包中已经包含了ribbon：2.2.1.RELEASE-->

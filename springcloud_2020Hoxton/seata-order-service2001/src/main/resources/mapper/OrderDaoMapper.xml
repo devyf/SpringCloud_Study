@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengye.springcloud.dao.OrderDao">
+    <resultMap id="baseResultMap" type="com.fengye.springcloud.domain.Order">
+        <id column="id" property="id" javaType="Long"/>
+        <result column="user_id" property="userId" javaType="Long"/>
+        <result column="product_id" property="productId" javaType="Long"/>
+        <result column="count" property="count" javaType="Integer"/>
+        <result column="money" property="money" javaType="BigDecimal"/>
+        <result column="status" property="status" javaType="Long"/>
+    </resultMap>
+
+    <insert id="create">
+      insert into t_order(user_id, product_id, count, money, status)
+      values(#{userId}, #{productId}, #{count}, #{money}, 0)
+    </insert>
+
+    <update id="update">
+      update t_order set status=1 where user_id = #{userId} and status = #{status}
+    </update>
+</mapper>

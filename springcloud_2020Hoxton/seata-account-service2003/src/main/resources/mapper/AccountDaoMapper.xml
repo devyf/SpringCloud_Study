@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengye.springcloud.dao.AccountDao">
+    <resultMap id="baseResultMap" type="com.fengye.springcloud.domain.Account">
+        <id column="id" property="id" javaType="Long"/>
+        <result column="user_id" property="userId" javaType="Long"/>
+        <result column="total" property="total" javaType="BigDecimal"/>
+        <result column="used" property="used" javaType="BigDecimal"/>
+        <result column="residue" property="residue" javaType="BigDecimal"/>
+    </resultMap>
+
+    <update id="decrease">
+        update t_account
+        set used = used + #{money}, residue = residue - #{money}
+        where user_id = #{userId}
+    </update>
+</mapper>

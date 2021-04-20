@@ -9,7 +9,8 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 @SpringBootApplication
 @EnableEurekaClient
 //注意使用Ribbon自定义的负载均衡实现需要重新自定义一个包，不能与springcloud包在一个目录下
-@RibbonClient(name = "SPRINGCLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
+//@RibbonClient(name = "SPRINGCLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
+@RibbonClient(name = "SPRINGCLOUD-PAYMENT-SERVICE")
 public class OrderMain80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderMain80.class, args);

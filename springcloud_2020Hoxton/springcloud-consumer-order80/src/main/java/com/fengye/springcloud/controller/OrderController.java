@@ -72,4 +72,9 @@ public class OrderController {
         return String.valueOf(port);
     }
 
+    @GetMapping(value = "/consumer/payment/zipkin")
+    public String paymentZipkin(){
+        return restTemplate.getForObject(PROVIDER_PAYMENT_URL + "/payment/zipkin", String.class);
+    }
+
 }
